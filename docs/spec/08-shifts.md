@@ -54,3 +54,15 @@ The domain of the app: the work shifts of one worker. The rules of `src/shifts.j
   cycle with the latest `from` on or before the date applies (`cycle`), and its step is the count
   of days from `from`, modulo the count of steps. Else there is no shift (`none`). A date before
   the first cycle is `none`.
+
+## Totals
+
+The rules of `src/totals.js`.
+
+- **TOT-1** The planned minutes of a `work` type are the length of the shift less its break. A
+  day off, a leave and a day with no shift count 0 minutes.
+- **TOT-2** `totals` of a range, both ends included, is the sum of the planned minutes of each
+  date (SHF-10) and the count of the dates of each type. A shift past midnight counts on the day
+  it starts.
+- **TOT-3** A week runs from Monday to Sunday, and may cross two months. A month is its calendar
+  days.

@@ -7,6 +7,7 @@
 | `src/config.js` | The slug of the app, which `npm run init` rewrites | nothing |
 | `src/dates.js` | Arithmetic of calendar dates and times of day | nothing |
 | `src/shifts.js` | The shifts doc: types, cycles, days, the shift of a date, and its validation | `config`, `dates` |
+| `src/totals.js` | The planned minutes of a type, and the totals of a range, a week and a month | `shifts`, `dates` |
 | `src/version.js` | Version rules and the update offer rule | nothing |
 | `src/i18n.js` | The language choice and the translator | `locales/*` |
 | `src/sections.js` | The order of the sections and the rule of the slide between them | nothing |
@@ -83,6 +84,7 @@ The doc keys are in [07-notes.md](07-notes.md) and [08-shifts.md](08-shifts.md).
 |---|---|
 | `tests/dates.test.js` | The arithmetic of calendar dates, the month grid, the ISO week and the length of a shift |
 | `tests/shifts.test.js` | The operations of the shifts doc, the shift of a date and the validation of the doc |
+| `tests/totals.test.js` | The minutes of a type and the totals of a range, a week and a month |
 | `tests/notes.test.js` | The note operations and the validation of the doc (demo) |
 | `tests/storage.test.js` | Load, save, the corrupt copy, export, import and the device preferences |
 | `tests/install.test.js` | The install offer states (INS-1) |

@@ -34,7 +34,7 @@ the identifier in a commit body or in a test name to point at a rule.
 | `LAY`, `NAV`, `MOD`, `ONB` | 05-layout |
 | `I18N` | 06-i18n |
 | `NOTE` | 07-notes |
-| `SHF` | 08-shifts |
+| `SHF`, `TOT` | 08-shifts |
 
 ## Words
 
