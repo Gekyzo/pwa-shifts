@@ -17,6 +17,7 @@ The names of the screen are the English ones; `src/locales/es.js` is the source 
 | [05-layout.md](05-layout.md) | Size classes, navigation, sections, modules and the walkthrough |
 | [06-i18n.md](06-i18n.md) | The languages and the rules of the text |
 | [07-notes.md](07-notes.md) | The notes demo: the domain that each app replaces |
+| [08-shifts.md](08-shifts.md) | The shifts: types, cycles, days, totals and their screens |
 
 ## Rule identifiers
 
@@ -33,6 +34,7 @@ the identifier in a commit body or in a test name to point at a rule.
 | `LAY`, `NAV`, `MOD`, `ONB` | 05-layout |
 | `I18N` | 06-i18n |
 | `NOTE` | 07-notes |
+| `SHF` | 08-shifts |
 
 ## Words
 
@@ -47,6 +49,9 @@ the identifier in a commit body or in a test name to point at a rule.
 | Sheet | A panel that comes up from the bottom of the screen |
 | Message | An error or a notice as `{ key, params }`, which the screen turns into text |
 | Doc | The stored state of the app: one JSON value under one storage key |
+| Shift type | A named kind of day: a work shift with its hours, a day off, or a leave |
+| Cycle | An ordered list of steps that repeats from a start date; a step is a shift type or nothing |
+| Override | A value that the user gives to one date, which wins over the cycle |
 
 ## Upkeep
 

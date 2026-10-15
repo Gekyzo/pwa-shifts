@@ -6,6 +6,7 @@
 |---|---|---|
 | `src/config.js` | The slug of the app, which `npm run init` rewrites | nothing |
 | `src/dates.js` | Arithmetic of calendar dates and times of day | nothing |
+| `src/shifts.js` | The shifts doc: types, cycles, days, the shift of a date, and its validation | `config`, `dates` |
 | `src/version.js` | Version rules and the update offer rule | nothing |
 | `src/i18n.js` | The language choice and the translator | `locales/*` |
 | `src/sections.js` | The order of the sections and the rule of the slide between them | nothing |
@@ -58,7 +59,7 @@
 
 ## Storage keys
 
-The doc keys are in [07-notes.md](07-notes.md). The device preferences are `pwa-shifts.lang`,
+The doc keys are in [07-notes.md](07-notes.md) and [08-shifts.md](08-shifts.md). The device preferences are `pwa-shifts.lang`,
 `pwa-shifts.hand`, `pwa-shifts.theme`, `pwa-shifts.modules` and `pwa-shifts.onboarded`.
 
 ## Change guide
@@ -81,6 +82,7 @@ The doc keys are in [07-notes.md](07-notes.md). The device preferences are `pwa-
 | Test file | Covers |
 |---|---|
 | `tests/dates.test.js` | The arithmetic of calendar dates, the month grid, the ISO week and the length of a shift |
+| `tests/shifts.test.js` | The operations of the shifts doc, the shift of a date and the validation of the doc |
 | `tests/notes.test.js` | The note operations and the validation of the doc (demo) |
 | `tests/storage.test.js` | Load, save, the corrupt copy, export, import and the device preferences |
 | `tests/install.test.js` | The install offer states (INS-1) |
