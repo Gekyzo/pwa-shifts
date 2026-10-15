@@ -4,6 +4,10 @@ User-visible changes, newest first.
 
 ## Unreleased
 
+No change.
+
+## 0.2.0 - 2026-10-15
+
 - Track your own work shifts: create shift types (work with its hours and break, day off, leave)
   and a cycle that repeats them from a start date.
 - Month shows each day's shift, marks the days you changed and the days with a note, and totals
