@@ -98,6 +98,17 @@ The editor of one date, `src/ui/day.js`.
 - **DAY-3** A tap on the veil or Escape closes the day sheet. A window that grows past 840px on
   Month moves the open date from the sheet into the pane.
 
+## Agenda
+
+The Agenda section, `src/ui/agenda.js`. It is the module `agenda` (MOD-1).
+
+- **AGD-1** Agenda lists one row for each date from today, 60 dates at first. A row shows the date,
+  the code of its shift on its colour, the name and the hours of the shift, and the note. Today is
+  marked, and an override has a border.
+- **AGD-2** A head before the first row and before each Monday names the ISO week and its planned
+  hours (TOT-3). **Show more days** adds 60 dates.
+- **AGD-3** A tap on a row opens the day sheet (DAY-1), at each width.
+
 ## Plan
 
 The Plan section, `src/ui/plan.js`.

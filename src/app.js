@@ -1,6 +1,7 @@
 import { $, ui, storage, t, setRender, showToast, hideToast, toastAction, clickGuardUntil } from '#ui/context';
 import { bind as bindNav, renderNav } from '#ui/nav';
 import { bind as bindMonth, renderMonth } from '#ui/month';
+import { bind as bindAgenda, renderAgenda } from '#ui/agenda';
 import { bind as bindDay, renderDay, closeDaySheet } from '#ui/day';
 import { bind as bindPlan, renderPlan, closePlanSheets } from '#ui/plan';
 import { bind as bindSettings, applyLanguage } from '#ui/settings';
@@ -12,7 +13,7 @@ const renderAll = () => {
   renderNav();
   $('title').textContent = t(`nav.${ui.view}`);
   renderMonth();
-  $('agenda').hidden = ui.view !== 'agenda';
+  renderAgenda();
   renderPlan();
   renderDay();
   $('settings').hidden = ui.view !== 'settings';
@@ -24,6 +25,7 @@ setRender(renderAll);
 bindNav();
 bindMonth();
 bindDay();
+bindAgenda();
 bindPlan();
 bindSettings();
 bindInstall();

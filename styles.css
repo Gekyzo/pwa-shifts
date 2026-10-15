@@ -68,6 +68,7 @@
     --swatch: 36px; /* the code of a shift type on its colour */
     --swatch-s: 24px;
     --dot: 6px; /* the mark of a day with a note */
+    --agenda-date: 88px; /* the date column of the Agenda */
 
     --shadow-s: 0 1px 3px rgb(0 0 0 / 0.3);
     --shadow-l: 0 6px 18px rgb(0 0 0 / 0.25);
@@ -1644,12 +1645,83 @@
 
   /* @component agenda
      @scope agenda
-     @summary The Agenda section: one row for each date from today. One centred column from 600px.
-     @example <section class="agenda" style="width: 100%"></section> */
+     @summary The Agenda section: one row for each date from today, with a head for each week. One centred column from 600px.
+     @part agenda-list  The list of week heads and rows.
+     @part agenda-week  The head of a week: its number and its hours.
+     @part agenda-row  One date: the date, the swatch, then the name, the hours and the note.
+     @part agenda-date  The date of a row.
+     @part agenda-text  The name and the lines below it.
+     @part agenda-name  The name of the shift.
+     @part agenda-meta  A muted line: the hours or the note.
+     @state data-today  On agenda-row: today.
+     @state data-override  On agenda-row: a date that the user changed.
+     @example <section class="agenda" style="width: 100%"><ul class="agenda-list"><li class="agenda-week">Week 42 · 23.5 h</li><li><button class="agenda-row" type="button" data-today><span class="agenda-date">Thu 15 Oct</span><span class="type-swatch" data-color="blue">N</span><span class="agenda-text"><span class="agenda-name">Night</span><span class="agenda-meta">22:00–06:00 · 7.5 h</span></span></button></li><li><button class="agenda-row" type="button"><span class="agenda-date">Fri 16 Oct</span><span class="type-swatch" data-color="none">–</span><span class="agenda-text"><span class="agenda-name">No shift</span></span></button></li></ul></section> */
   .agenda {
     width: 100%;
     max-width: var(--content-max);
     margin-inline: auto;
+    padding: 0 var(--space-3) var(--space-6);
+  }
+
+  .agenda-list {
+    margin: 0 0 var(--space-4);
+    padding: 0;
+    list-style: none;
+  }
+
+  .agenda-week {
+    margin: var(--space-5) var(--space-1) var(--space-2);
+    color: var(--muted);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-strong);
+  }
+
+  .agenda-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    width: 100%;
+    min-height: var(--tap-l);
+    margin-top: var(--space-1);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-m);
+    background: var(--surface);
+    text-align: left;
+  }
+
+  .agenda-row[data-today] {
+    background: var(--accent-soft);
+  }
+
+  .agenda-row[data-override] {
+    box-shadow: inset 0 0 0 2px var(--accent);
+  }
+
+  .agenda-date {
+    flex: none;
+    width: var(--agenda-date);
+    color: var(--muted);
+    font-size: var(--text-s);
+  }
+
+  .agenda-row[data-today] .agenda-date {
+    color: var(--accent);
+    font-weight: var(--weight-strong);
+  }
+
+  .agenda-text {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .agenda-meta {
+    overflow: hidden;
+    color: var(--muted);
+    font-size: var(--text-xs);
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   /* @component version-status

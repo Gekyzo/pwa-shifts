@@ -11,6 +11,7 @@ const SHELL = [
   './src/dates.js',
   './src/shifts.js',
   './src/totals.js',
+  './src/ui/agenda.js',
   './src/ui/context.js',
   './src/ui/controls.js',
   './src/ui/day.js',

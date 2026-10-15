@@ -32,7 +32,7 @@ the identifier in a commit body or in a test name to point at a rule.
 | `DS` | 04-design-system |
 | `LAY`, `NAV`, `MOD`, `ONB` | 05-layout |
 | `I18N` | 06-i18n |
-| `SHF`, `TOT`, `CAL`, `DAY`, `PLN` | 08-shifts |
+| `SHF`, `TOT`, `CAL`, `DAY`, `AGD`, `PLN` | 08-shifts |
 
 ## Words
 

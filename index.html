@@ -46,7 +46,11 @@
         </article>
       </section>
 
-      <section id="agenda" class="agenda" hidden></section>
+      <section id="agenda" class="agenda" hidden>
+        <p id="agenda-empty" class="empty-state inline" data-i18n="month.noTypes"></p>
+        <ul id="agenda-list" class="agenda-list"></ul>
+        <button id="agenda-more" class="button outline wide" type="button" data-i18n="agenda.more"></button>
+      </section>
 
       <section id="plan" class="plan" hidden>
         <h2 class="plan-title" data-i18n="plan.types"></h2>
@@ -213,6 +217,7 @@
           "#i18n": "./src/i18n.js",
           "#locales/en": "./src/locales/en.js",
           "#locales/es": "./src/locales/es.js",
+          "#ui/agenda": "./src/ui/agenda.js",
           "#ui/context": "./src/ui/context.js",
           "#ui/controls": "./src/ui/controls.js",
           "#ui/day": "./src/ui/day.js",

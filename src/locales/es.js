@@ -25,6 +25,8 @@ export default {
   'toast.dayChanged': 'Día cambiado.',
   'toast.dayReset': 'El día sigue el ciclo.',
   'toast.noteSaved': 'Nota guardada.',
+  'agenda.week': 'Semana {week} · {hours}',
+  'agenda.more': 'Mostrar más días',
   'plan.types': 'Tipos de turno',
   'plan.cycles': 'Ciclos',
   'plan.noTypes': 'Aún no hay tipos de turno. Pulsa + para crear uno.',

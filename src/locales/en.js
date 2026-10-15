@@ -25,6 +25,8 @@ export default {
   'toast.dayChanged': 'Day changed.',
   'toast.dayReset': 'The day follows the cycle.',
   'toast.noteSaved': 'Note saved.',
+  'agenda.week': 'Week {week} · {hours}',
+  'agenda.more': 'Show more days',
   'plan.types': 'Shift types',
   'plan.cycles': 'Cycles',
   'plan.noTypes': 'No shift types yet. Tap + to create one.',
