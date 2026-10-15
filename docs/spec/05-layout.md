@@ -18,7 +18,7 @@ Rules of `styles.css` for the size classes, `src/sections.js`, `src/modules.js`,
   toast and the add button move beside it.
 - **LAY-3** A section with a list and a detail uses the `pane` layout. Below 840px it shows the
   list, or the detail alone while an entry is open, with a **Back** button (`pane-back`). From
-  840px it shows both; with no entry open the detail is empty, and **Back** is hidden.
+  840px it shows both; with no entry open the detail says what to pick (CAL-4), and **Back** is hidden.
 - **LAY-4** The safe-area insets of the phone pad the header (top), the bar (bottom), the rail
   (start side), the sheets and the walkthrough. The page keeps out of a cutout on either side,
   and so do the toast and the add button, which are fixed.

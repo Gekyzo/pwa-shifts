@@ -6,9 +6,12 @@ import { el, lang, t } from '#ui/context';
 export const hoursText = (minutes) =>
   t('hours.value', { hours: new Intl.NumberFormat(intlTag(lang), { maximumFractionDigits: 2 }).format(minutes / 60) });
 
-// A date `YYYY-MM-DD` in the words of the language. The date is read in UTC, as `#dates` makes it.
-export const dateText = (date, options) =>
-  new Intl.DateTimeFormat(intlTag(lang), { ...options, timeZone: 'UTC' }).format(new Date(`${date}T00:00:00Z`));
+// A date `YYYY-MM-DD` in the words of the language, with a capital first letter. The date is read
+// in UTC, as `#dates` makes it.
+export const dateText = (date, options) => {
+  const text = new Intl.DateTimeFormat(intlTag(lang), { ...options, timeZone: 'UTC' }).format(new Date(`${date}T00:00:00Z`));
+  return text.charAt(0).toLocaleUpperCase(intlTag(lang)) + text.slice(1);
+};
 
 export const LONG_DATE = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
 

@@ -67,6 +67,7 @@
     --logo: 96px; /* the app icon at the top of the walkthrough */
     --swatch: 36px; /* the code of a shift type on its colour */
     --swatch-s: 24px;
+    --dot: 6px; /* the mark of a day with a note */
 
     --shadow-s: 0 1px 3px rgb(0 0 0 / 0.3);
     --shadow-l: 0 6px 18px rgb(0 0 0 / 0.25);
@@ -306,6 +307,9 @@
      @example <button class="chip" type="button" aria-pressed="true">Work</button>
      @example <div class="cluster" style="background: var(--bg)"><button class="chip surface" type="button" aria-pressed="true"><span>All</span><span class="count">4</span></button><button class="chip surface" type="button"><span>Home</span><span class="count">1</span></button></div> */
   .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
     min-height: var(--tap);
     padding: 0 var(--space-4);
     border-radius: var(--radius-pill);
@@ -1415,6 +1419,175 @@
 }
 
 @layer screens {
+  /* @component month
+     @scope month
+     @summary The Month section: the head with the month and its arrows, the grid of six weeks, then the totals of the month. From 600px each week row ends with its hours.
+     @part month-head  The arrows, the name of the month and Today.
+     @part month-title  The name of the month.
+     @part month-grid  The grid: the names of the days, then six rows of seven days and the hours of the week.
+     @part month-weekday  The name of a day of the week, above its column.
+     @part month-day  One date: its number and the swatch of its shift. Selected with aria-pressed="true".
+     @part month-day-number  The number of the date.
+     @part month-day-blank  The place of the swatch of a date with no shift.
+     @part month-week  The hours of a week row. Hidden below 600px.
+     @part month-totals  The hours of the month and the count of the days of each type.
+     @part month-hours  The hours of the month.
+     @part month-count  The count of days of one type.
+     @state data-outside  On month-day: a date of the month before or after.
+     @state data-today  On month-day: today.
+     @state data-override  On month-day: a date that the user changed.
+     @state data-note  On month-day: a date with a note.
+     @example <div class="month-grid" style="width: 100%"><span class="month-weekday">M</span><span class="month-weekday">T</span><span class="month-weekday">W</span><span class="month-weekday">T</span><span class="month-weekday">F</span><span class="month-weekday">S</span><span class="month-weekday">S</span><span class="month-week"></span><button class="month-day" type="button" data-outside><span class="month-day-number">28</span><span class="month-day-blank"></span></button><button class="month-day" type="button"><span class="month-day-number">1</span><span class="type-swatch small" data-color="green">M</span></button><button class="month-day" type="button" data-today><span class="month-day-number">2</span><span class="type-swatch small" data-color="green">M</span></button><button class="month-day" type="button" data-override data-note><span class="month-day-number">3</span><span class="type-swatch small" data-color="orange">V</span></button><button class="month-day" type="button" aria-pressed="true"><span class="month-day-number">4</span><span class="type-swatch small" data-color="blue">N</span></button><button class="month-day" type="button"><span class="month-day-number">5</span><span class="month-day-blank"></span></button><button class="month-day" type="button"><span class="month-day-number">6</span><span class="month-day-blank"></span></button><span class="month-week">32 h</span></div> */
+  .month-head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-2) 0;
+  }
+
+  .month-title {
+    flex: 1;
+    margin: 0;
+    padding-inline-start: var(--space-2);
+    font-size: var(--text-m);
+  }
+
+  .month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: var(--space-half);
+    padding: var(--space-2);
+    touch-action: pan-y;
+  }
+
+  .month-weekday {
+    color: var(--muted);
+    font-size: var(--text-xs);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .month-day {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    min-height: var(--tap-l);
+    padding: var(--space-1) 0;
+    border-radius: var(--radius-m);
+    background: var(--surface);
+  }
+
+  .month-day[data-outside] {
+    opacity: 0.45;
+  }
+
+  .month-day[aria-pressed="true"] {
+    background: var(--accent-soft);
+  }
+
+  .month-day[data-override] {
+    box-shadow: inset 0 0 0 2px var(--accent);
+  }
+
+  .month-day[data-note]::after {
+    content: "";
+    position: absolute;
+    top: var(--space-1);
+    right: var(--space-1);
+    width: var(--dot);
+    height: var(--dot);
+    border-radius: var(--radius-round);
+    background: var(--warning);
+  }
+
+  .month-day-number {
+    min-width: var(--swatch-s);
+    border-radius: var(--radius-pill);
+    font-size: var(--text-xs);
+    line-height: 1.6;
+  }
+
+  .month-day[data-today] .month-day-number {
+    background: var(--accent);
+    color: var(--accent-text);
+    font-weight: var(--weight-strong);
+  }
+
+  .month-day-blank {
+    height: var(--swatch-s);
+  }
+
+  .month-week {
+    display: none;
+  }
+
+  .month-totals {
+    padding: 0 var(--space-4) var(--space-4);
+  }
+
+  .month-hours {
+    margin: var(--space-2) 0 0;
+    font-weight: var(--weight-strong);
+  }
+
+  .month-count {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--muted);
+    font-size: var(--text-s);
+  }
+
+  @media (min-width: 600px) {
+    .month-grid {
+      grid-template-columns: repeat(7, minmax(0, 1fr)) auto;
+    }
+
+    .month-week {
+      display: flex;
+      align-items: center;
+      padding-inline-start: var(--space-2);
+      color: var(--muted);
+      font-size: var(--text-xs);
+    }
+  }
+
+  /* @component day
+     @scope month
+     @summary The editor of one date, in the day sheet or beside the grid: its shift and source, a chip for each type, the reset, and the note.
+     @part day-title  The date in words.
+     @part day-summary  The swatch, the name and the hours of the shift.
+     @part day-source  Where the shift comes from: the cycle, a change by hand, or no cycle.
+     @part day-note  The field of the note.
+     @example <form class="day" style="width: 100%"><h2 class="day-title">Thursday, 15 October 2026</h2><p class="day-summary"><span class="type-swatch" data-color="blue">N</span><span>Night · 22:00–06:00 · 7.5 h</span></p><p class="day-source">From the cycle</p><textarea class="input day-note" rows="3" aria-label="Note"></textarea></form> */
+  .day-title {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-m);
+  }
+
+  .day-summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin: 0;
+  }
+
+  .day-source {
+    margin: var(--space-1) 0 0;
+    color: var(--muted);
+    font-size: var(--text-s);
+  }
+
+  .day-note {
+    height: auto;
+    font: inherit;
+    margin: var(--space-2) 0 var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    resize: vertical;
+  }
+
   /* @component plan
      @scope plan
      @summary The Plan section: the shift types, then the cycles, each a titled list group. One centred column from 600px.

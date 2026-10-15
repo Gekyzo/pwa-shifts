@@ -26,7 +26,24 @@
 
     <main>
       <section id="month" class="pane">
-        <div class="pane-list"></div>
+        <div class="pane-list">
+          <div class="month-head">
+            <button id="month-previous" class="button icon" type="button" data-i18n-attr="aria-label:month.previous"><svg class="icon" aria-hidden="true"><use href="icons.svg#chevron-left"/></svg></button>
+            <h2 id="month-title" class="month-title"></h2>
+            <button id="month-today" class="button accent" type="button" data-i18n="month.today"></button>
+            <button id="month-next" class="button icon" type="button" data-i18n-attr="aria-label:month.next"><svg class="icon" aria-hidden="true"><use href="icons.svg#chevron-right"/></svg></button>
+          </div>
+          <div id="month-grid" class="month-grid"></div>
+          <p id="month-empty" class="empty-state inline" data-i18n="month.noTypes"></p>
+          <div id="month-totals" class="month-totals"></div>
+        </div>
+        <article id="day-detail" class="pane-detail">
+          <p id="day-detail-empty" class="empty-state" data-i18n="month.pick"></p>
+          <form id="day-detail-form" class="day" autocomplete="off">
+            <h2 id="day-detail-title" class="day-title"></h2>
+            <div id="day-detail-body"></div>
+          </form>
+        </article>
       </section>
 
       <section id="agenda" class="agenda" hidden></section>
@@ -96,6 +113,15 @@
         <span data-i18n="nav.settings"></span>
       </button>
     </nav>
+
+    <div id="day-sheet" class="sheet-layer" hidden>
+      <div id="day-veil" class="sheet-veil"></div>
+      <form id="day-form" class="sheet" role="dialog" aria-modal="true" aria-labelledby="day-sheet-title" autocomplete="off">
+        <div class="sheet-grab"></div>
+        <h2 id="day-sheet-title" class="day-title"></h2>
+        <div id="day-sheet-body"></div>
+      </form>
+    </div>
 
     <div id="type-sheet" class="sheet-layer" hidden>
       <div id="type-veil" class="sheet-veil"></div>
@@ -189,7 +215,9 @@
           "#locales/es": "./src/locales/es.js",
           "#ui/context": "./src/ui/context.js",
           "#ui/controls": "./src/ui/controls.js",
+          "#ui/day": "./src/ui/day.js",
           "#ui/install": "./src/ui/install.js",
+          "#ui/month": "./src/ui/month.js",
           "#ui/format": "./src/ui/format.js",
           "#ui/nav": "./src/ui/nav.js",
           "#ui/plan": "./src/ui/plan.js",

@@ -1,5 +1,7 @@
 import { $, ui, storage, t, setRender, showToast, hideToast, toastAction, clickGuardUntil } from '#ui/context';
 import { bind as bindNav, renderNav } from '#ui/nav';
+import { bind as bindMonth, renderMonth } from '#ui/month';
+import { bind as bindDay, renderDay, closeDaySheet } from '#ui/day';
 import { bind as bindPlan, renderPlan, closePlanSheets } from '#ui/plan';
 import { bind as bindSettings, applyLanguage } from '#ui/settings';
 import { bind as bindInstall, renderInstall } from '#ui/install';
@@ -9,9 +11,10 @@ import { bind as bindOnboarding, closeOnboarding, turnOnboarding } from '#ui/onb
 const renderAll = () => {
   renderNav();
   $('title').textContent = t(`nav.${ui.view}`);
-  $('month').hidden = ui.view !== 'month';
+  renderMonth();
   $('agenda').hidden = ui.view !== 'agenda';
   renderPlan();
+  renderDay();
   $('settings').hidden = ui.view !== 'settings';
   renderVersion();
   renderInstall();
@@ -19,6 +22,8 @@ const renderAll = () => {
 setRender(renderAll);
 
 bindNav();
+bindMonth();
+bindDay();
 bindPlan();
 bindSettings();
 bindInstall();
@@ -42,7 +47,8 @@ document.addEventListener('keydown', (event) => {
     return;
   }
   if (event.key !== 'Escape') return;
-  if (ui.typeSheet !== null || ui.cycleSheet !== null) closePlanSheets();
+  if (ui.daySheet) closeDaySheet();
+  else if (ui.typeSheet !== null || ui.cycleSheet !== null) closePlanSheets();
 });
 
 $('toast-action').addEventListener('click', () => {
