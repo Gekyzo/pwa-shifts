@@ -1,16 +1,17 @@
-import { $, ui, storage, t, setRender, render, showToast, hideToast, toastAction, clickGuardUntil } from '#ui/context';
+import { $, ui, storage, t, setRender, showToast, hideToast, toastAction, clickGuardUntil } from '#ui/context';
 import { bind as bindNav, renderNav } from '#ui/nav';
-import { bind as bindNotes, renderNotes, closeNoteSheet } from '#ui/notes';
+import { bind as bindPlan, renderPlan, closePlanSheets } from '#ui/plan';
 import { bind as bindSettings, applyLanguage } from '#ui/settings';
 import { bind as bindInstall, renderInstall } from '#ui/install';
 import { readVersion, renderVersion, offerUpdate } from '#ui/update';
-import { bind as bindDrag, endReorder } from '#ui/drag';
 import { bind as bindOnboarding, closeOnboarding, turnOnboarding } from '#ui/onboarding';
 
 const renderAll = () => {
   renderNav();
   $('title').textContent = t(`nav.${ui.view}`);
-  renderNotes();
+  $('month').hidden = ui.view !== 'month';
+  $('agenda').hidden = ui.view !== 'agenda';
+  renderPlan();
   $('settings').hidden = ui.view !== 'settings';
   renderVersion();
   renderInstall();
@@ -18,10 +19,9 @@ const renderAll = () => {
 setRender(renderAll);
 
 bindNav();
-bindNotes();
+bindPlan();
 bindSettings();
 bindInstall();
-bindDrag();
 bindOnboarding();
 
 document.addEventListener(
@@ -42,12 +42,7 @@ document.addEventListener('keydown', (event) => {
     return;
   }
   if (event.key !== 'Escape') return;
-  endReorder(false);
-  if (ui.sheetOpen) closeNoteSheet();
-  else if (ui.noteId !== null) {
-    ui.noteId = null;
-    render();
-  }
+  if (ui.typeSheet !== null || ui.cycleSheet !== null) closePlanSheets();
 });
 
 $('toast-action').addEventListener('click', () => {

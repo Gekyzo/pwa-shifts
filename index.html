@@ -25,22 +25,18 @@
     </div>
 
     <main>
-      <section id="notes" class="pane">
-        <div class="pane-list">
-          <ul id="note-list" class="item-list"></ul>
-          <div id="notes-empty" class="empty-state" hidden>
-            <p data-i18n="notes.empty"></p>
-          </div>
-        </div>
-        <article id="note-detail" class="pane-detail">
-          <button id="note-back" class="button quiet pane-back" type="button" data-i18n="notes.back"></button>
-          <p id="note-detail-empty" class="empty-state" data-i18n="notes.pick"></p>
-          <p id="note-detail-text"></p>
-          <div id="note-actions" class="cluster">
-            <button id="note-edit" class="button outline" type="button" data-i18n="notes.edit"></button>
-            <button id="note-delete" class="button danger" type="button"><svg class="icon" aria-hidden="true"><use href="icons.svg#trash"/></svg><span data-i18n="notes.delete"></span></button>
-          </div>
-        </article>
+      <section id="month" class="pane">
+        <div class="pane-list"></div>
+      </section>
+
+      <section id="agenda" class="agenda" hidden></section>
+
+      <section id="plan" class="plan" hidden>
+        <h2 class="plan-title" data-i18n="plan.types"></h2>
+        <div id="type-list" class="list-group"></div>
+        <p id="types-empty" class="empty-state" data-i18n="plan.noTypes"></p>
+        <h2 class="plan-title" data-i18n="plan.cycles"></h2>
+        <div id="cycle-list" class="list-group"></div>
       </section>
 
       <section id="settings" class="settings" hidden>
@@ -63,7 +59,7 @@
         </div>
         <h2 class="settings-title" data-i18n="settings.modules"></h2>
         <div class="list-group">
-          <label class="switch"><span data-i18n="nav.notes"></span><input class="switch-input" type="checkbox" role="switch" data-module="notes"></label>
+          <label class="switch"><span data-i18n="nav.agenda"></span><input class="switch-input" type="checkbox" role="switch" data-module="agenda"></label>
         </div>
         <h2 class="settings-title" data-i18n="settings.app"></h2>
         <div class="list-group">
@@ -80,12 +76,20 @@
       </section>
     </main>
 
-    <button id="fab" class="fab" type="button" data-i18n-attr="aria-label:notes.add">+</button>
+    <button id="fab" class="fab" type="button" data-i18n-attr="aria-label:plan.addType">+</button>
 
     <nav class="nav-bar" data-i18n-attr="aria-label:nav.label">
-      <button class="nav-item" type="button" data-view="notes">
-        <svg class="icon" aria-hidden="true"><use href="icons.svg#note"/></svg>
-        <span data-i18n="nav.notes"></span>
+      <button class="nav-item" type="button" data-view="month">
+        <svg class="icon" aria-hidden="true"><use href="icons.svg#calendar"/></svg>
+        <span data-i18n="nav.month"></span>
+      </button>
+      <button class="nav-item" type="button" data-view="agenda">
+        <svg class="icon" aria-hidden="true"><use href="icons.svg#agenda"/></svg>
+        <span data-i18n="nav.agenda"></span>
+      </button>
+      <button class="nav-item" type="button" data-view="plan">
+        <svg class="icon" aria-hidden="true"><use href="icons.svg#cycle"/></svg>
+        <span data-i18n="nav.plan"></span>
       </button>
       <button class="nav-item" type="button" data-view="settings">
         <svg class="icon" aria-hidden="true"><use href="icons.svg#settings"/></svg>
@@ -93,13 +97,46 @@
       </button>
     </nav>
 
-    <div id="note-sheet" class="sheet-layer" hidden>
-      <div id="note-veil" class="sheet-veil"></div>
-      <form id="note-form" class="sheet" role="dialog" aria-modal="true" aria-labelledby="note-sheet-title" autocomplete="off">
+    <div id="type-sheet" class="sheet-layer" hidden>
+      <div id="type-veil" class="sheet-veil"></div>
+      <form id="type-form" class="sheet" role="dialog" aria-modal="true" aria-labelledby="type-sheet-title" autocomplete="off">
         <div class="sheet-grab"></div>
-        <h2 id="note-sheet-title" class="sheet-title"></h2>
-        <label class="field"><textarea id="note-text" class="input" maxlength="200" rows="3" required></textarea><span class="field-label" data-i18n="notes.text"></span></label>
-        <button class="button primary wide" type="submit" data-i18n="notes.save"></button>
+        <h2 id="type-sheet-title" class="sheet-title"></h2>
+        <label class="field"><input id="type-name" class="input field-input" type="text" maxlength="30" required data-i18n-attr="placeholder:type.name"><span class="field-label" data-i18n="type.name"></span></label>
+        <label class="field"><input id="type-code" class="input field-input" type="text" maxlength="3" required data-i18n-attr="placeholder:type.code"><span class="field-label" data-i18n="type.code"></span></label>
+        <h2 class="sheet-title part" data-i18n="type.kind"></h2>
+        <div id="type-kind" class="segmented"></div>
+        <div id="type-times" class="split">
+          <label class="field"><input id="type-start" class="input field-input" type="time"><span class="field-label" data-i18n="type.start"></span></label>
+          <label class="field"><input id="type-end" class="input field-input" type="time"><span class="field-label" data-i18n="type.end"></span></label>
+        </div>
+        <label id="type-break-field" class="field"><input id="type-break" class="input field-input" type="number" min="0" step="1" inputmode="numeric" data-i18n-attr="placeholder:type.break"><span class="field-label" data-i18n="type.break"></span></label>
+        <h2 class="sheet-title part" data-i18n="type.color"></h2>
+        <div id="type-colors" class="cluster"></div>
+        <div class="split">
+          <button id="type-delete" class="button outline danger" type="button"><svg class="icon" aria-hidden="true"><use href="icons.svg#trash"/></svg><span data-i18n="type.delete"></span></button>
+          <button class="button primary hand-side" type="submit" data-i18n="type.save"></button>
+        </div>
+      </form>
+    </div>
+
+    <div id="cycle-sheet" class="sheet-layer" hidden>
+      <div id="cycle-veil" class="sheet-veil"></div>
+      <form id="cycle-form" class="sheet" role="dialog" aria-modal="true" aria-labelledby="cycle-sheet-title" autocomplete="off">
+        <div class="sheet-grab"></div>
+        <h2 id="cycle-sheet-title" class="sheet-title"></h2>
+        <label class="field"><input id="cycle-from" class="input field-input" type="date" required><span class="field-label" data-i18n="cycle.start"></span></label>
+        <h2 class="sheet-title part" data-i18n="cycle.steps"></h2>
+        <div id="cycle-steps" class="cluster"></div>
+        <p id="cycle-steps-empty" class="empty-state inline" data-i18n="cycle.noSteps"></p>
+        <h2 class="sheet-title part" data-i18n="cycle.add"></h2>
+        <div id="cycle-palette" class="cluster"></div>
+        <h2 class="sheet-title part" data-i18n="cycle.preview"></h2>
+        <div id="cycle-preview" class="cycle-preview"></div>
+        <div class="split">
+          <button id="cycle-delete" class="button outline danger" type="button"><svg class="icon" aria-hidden="true"><use href="icons.svg#trash"/></svg><span data-i18n="cycle.delete"></span></button>
+          <button class="button primary hand-side" type="submit" data-i18n="cycle.save"></button>
+        </div>
       </form>
     </div>
 
@@ -142,7 +179,6 @@
           "#dates": "./src/dates.js",
           "#shifts": "./src/shifts.js",
           "#totals": "./src/totals.js",
-          "#notes": "./src/notes.js",
           "#install": "./src/install.js",
           "#sections": "./src/sections.js",
           "#modules": "./src/modules.js",
@@ -154,15 +190,12 @@
           "#ui/context": "./src/ui/context.js",
           "#ui/controls": "./src/ui/controls.js",
           "#ui/install": "./src/ui/install.js",
-          "#ui/motion": "./src/ui/motion.js",
+          "#ui/format": "./src/ui/format.js",
           "#ui/nav": "./src/ui/nav.js",
-          "#ui/notes": "./src/ui/notes.js",
+          "#ui/plan": "./src/ui/plan.js",
           "#ui/settings": "./src/ui/settings.js",
-          "#swipe": "./src/swipe.js",
-          "#reorder": "./src/reorder.js",
           "#particles": "./src/particles.js",
           "#onboarding": "./src/onboarding.js",
-          "#ui/drag": "./src/ui/drag.js",
           "#ui/dust": "./src/ui/dust.js",
           "#ui/onboarding": "./src/ui/onboarding.js",
           "#ui/update": "./src/ui/update.js"

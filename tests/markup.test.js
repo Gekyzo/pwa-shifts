@@ -33,11 +33,21 @@ test('the markup has no text of its own', () => {
   assert.doesNotMatch(body, /\s(aria-label|placeholder|title)="/);
 });
 
-test('the note sheet has a veil, a dialog and a text field with the maximum length', () => {
-  const [layer = ''] = body.match(/<div id="note-sheet" class="sheet-layer"[\s\S]*?<\/form>\s*<\/div>/) ?? [];
-  assert.match(layer, /<div id="note-veil" class="sheet-veil">/);
-  assert.match(layer, /<form id="note-form" class="sheet" role="dialog"/);
-  assert.match(layer, /<textarea id="note-text"[^>]*maxlength="200"/);
+// Each sheet: its layer, the veil that closes it and the form of the dialog.
+const sheetOf = (name) => body.match(new RegExp(`<div id="${name}-sheet" class="sheet-layer"[\\s\\S]*?<\\/form>\\s*<\\/div>`))?.[0] ?? '';
+
+test('each sheet has a veil and a dialog form', () => {
+  for (const name of ['type', 'cycle']) {
+    const layer = sheetOf(name);
+    assert.match(layer, new RegExp(`<div id="${name}-veil" class="sheet-veil">`), name);
+    assert.match(layer, new RegExp(`<form id="${name}-form" class="sheet" role="dialog"`), name);
+  }
+});
+
+test('the type sheet limits the name and the code to the lengths of the doc (SHF-3)', () => {
+  const layer = sheetOf('type');
+  assert.match(layer, /<input id="type-name"[^>]*maxlength="30"/);
+  assert.match(layer, /<input id="type-code"[^>]*maxlength="3"/);
 });
 
 test('the walkthrough has one drawing for each page, in the order of the pages', () => {

@@ -66,3 +66,22 @@ The rules of `src/totals.js`.
   it starts.
 - **TOT-3** A week runs from Monday to Sunday, and may cross two months. A month is its calendar
   days.
+
+## Plan
+
+The Plan section, `src/ui/plan.js`.
+
+- **PLN-1** Plan lists the shift types, each with its code on its colour, its name, and its hours
+  or its kind. With no type it shows `plan.noTypes`. **+** opens the sheet of a new type; a tap on
+  a row opens the sheet of that type.
+- **PLN-2** The type sheet has the name, the code, the kind (`work`, `off` or `leave`), and for
+  `work` the start, the end and the break in minutes, then a colour of `COLORS`. **Save** applies
+  SHF-3 or SHF-5. **Delete**, for a type that exists, applies SHF-5; the toast
+  `toast.typeDeleted` offers **Undo** for 5 seconds.
+- **PLN-3** Plan lists the cycles by their first day, each with the codes of its steps, then
+  **New cycle**, which needs one type at least. A tap opens the cycle sheet.
+- **PLN-4** The cycle sheet has the first day, the steps, a palette of the types and **Nothing**
+  that adds a step at the end, and a preview of the first 14 days. A tap on a step removes it.
+  **Save** applies SHF-6; a changed first day removes the cycle of the old day in the same change.
+  **Delete** applies SHF-7, and the toast `toast.cycleDeleted` offers **Undo**.
+- **PLN-5** A tap on the veil or Escape closes a sheet with no change.

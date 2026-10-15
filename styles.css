@@ -18,6 +18,15 @@
     --toast-text: light-dark(#ffffff, #17201b);
     --knob: #ffffff; /* the knob of a switch, in both themes */
     --scrim: rgb(0 0 0 / 0.45); /* veil behind a sheet */
+    /* The colours of the shift types (COLORS of shifts.js): soft fills that keep --text legible. */
+    --shift-green: light-dark(#c9ecd6, #1e4a32);
+    --shift-blue: light-dark(#cfe0fb, #1f3a63);
+    --shift-purple: light-dark(#e3d5f7, #3e2a5e);
+    --shift-orange: light-dark(#fbdcc0, #5a3517);
+    --shift-red: light-dark(#f8cfcb, #5c2420);
+    --shift-teal: light-dark(#c3ebe8, #194846);
+    --shift-grey: light-dark(#e1e4e2, #343b37);
+    --shift-yellow: light-dark(#f6ebb0, #514512);
 
     --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --font-mono: ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace; /* keys of the walkthrough */
@@ -56,6 +65,8 @@
     --pane-list: 360px;
     --art-width: 240px; /* the drawings of the walkthrough */
     --logo: 96px; /* the app icon at the top of the walkthrough */
+    --swatch: 36px; /* the code of a shift type on its colour */
+    --swatch-s: 24px;
 
     --shadow-s: 0 1px 3px rgb(0 0 0 / 0.3);
     --shadow-l: 0 6px 18px rgb(0 0 0 / 0.25);
@@ -183,7 +194,7 @@
   /* @component icon
      @summary A line icon of icons.svg. It takes the colour of the text around it.
      @variant small  The size --icon-s, for an icon beside a label.
-     @example <svg class="icon" aria-hidden="true"><use href="icons.svg#note"/></svg>
+     @example <svg class="icon" aria-hidden="true"><use href="icons.svg#calendar"/></svg>
      @example <svg class="icon small" aria-hidden="true"><use href="icons.svg#download"/></svg> */
   .icon {
     flex: none;
@@ -588,7 +599,7 @@
   /* @component nav-bar
      @summary The bottom bar below 600px, a rail at the start side from 600px: one item for each section that is on.
      @part nav-item  A section: its icon and its name. The current one has aria-current="page".
-     @example <nav class="nav-bar" style="width: 100%"><button class="nav-item" type="button" aria-current="page"><svg class="icon" aria-hidden="true"><use href="icons.svg#note"/></svg><span>Notes</span></button><button class="nav-item" type="button"><svg class="icon" aria-hidden="true"><use href="icons.svg#settings"/></svg><span>Later</span><em class="badge">2</em></button></nav> */
+     @example <nav class="nav-bar" style="width: 100%"><button class="nav-item" type="button" aria-current="page"><svg class="icon" aria-hidden="true"><use href="icons.svg#calendar"/></svg><span>Notes</span></button><button class="nav-item" type="button"><svg class="icon" aria-hidden="true"><use href="icons.svg#settings"/></svg><span>Later</span><em class="badge">2</em></button></nav> */
   .nav-bar {
     display: flex;
     flex: none;
@@ -1175,6 +1186,69 @@
     font-size: var(--text-xs);
   }
 
+  /* @component type-swatch
+     @summary The code of a shift type on the colour of the type. A dash on no colour is a day with no shift.
+     @variant small  A smaller box, for a chip or a preview.
+     @state data-color  The colour of the type: green, blue, purple, orange, red, teal, grey, yellow, or none.
+     @example <div class="cluster"><span class="type-swatch" data-color="green">M</span><span class="type-swatch" data-color="blue">N</span><span class="type-swatch" data-color="none">–</span><span class="type-swatch small" data-color="orange">V</span></div> */
+  .type-swatch {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--swatch);
+    height: var(--swatch);
+    padding: 0 var(--space-1);
+    border-radius: var(--radius-m);
+    background: var(--bg);
+    color: var(--text);
+    font-size: var(--text-s);
+    font-weight: var(--weight-strong);
+  }
+
+  .type-swatch.small {
+    min-width: var(--swatch-s);
+    height: var(--swatch-s);
+    border-radius: var(--radius-s);
+    font-size: var(--text-xs);
+  }
+
+  .type-swatch[data-color="none"] {
+    color: var(--muted);
+  }
+
+  .type-swatch[data-color="green"] {
+    background: var(--shift-green);
+  }
+
+  .type-swatch[data-color="blue"] {
+    background: var(--shift-blue);
+  }
+
+  .type-swatch[data-color="purple"] {
+    background: var(--shift-purple);
+  }
+
+  .type-swatch[data-color="orange"] {
+    background: var(--shift-orange);
+  }
+
+  .type-swatch[data-color="red"] {
+    background: var(--shift-red);
+  }
+
+  .type-swatch[data-color="teal"] {
+    background: var(--shift-teal);
+  }
+
+  .type-swatch[data-color="grey"] {
+    background: var(--shift-grey);
+  }
+
+  .type-swatch[data-color="yellow"] {
+    background: var(--shift-yellow);
+  }
+
   /* @component fab
      @summary The add button, fixed above the bottom bar at the side of the hand.
      @example <button class="fab" type="button" style="position: static">+</button> */
@@ -1341,6 +1415,70 @@
 }
 
 @layer screens {
+  /* @component plan
+     @scope plan
+     @summary The Plan section: the shift types, then the cycles, each a titled list group. One centred column from 600px.
+     @part plan-title  The title above a list group.
+     @example <section class="plan" style="width: 100%"><h2 class="plan-title">Shift types</h2><div class="list-group"><button class="list-row" type="button"><span class="type-swatch" data-color="green">M</span><span class="list-row-text">Morning</span><span class="list-row-meta">06:00–14:00 · 8 h</span></button></div></section> */
+  .plan {
+    width: 100%;
+    max-width: var(--content-max);
+    margin-inline: auto;
+    padding-bottom: calc(var(--tap-l) + var(--space-6));
+  }
+
+  .plan-title {
+    margin: var(--space-5) var(--space-4) var(--space-2);
+    color: var(--muted);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* @component cycle-sheet
+     @scope plan
+     @summary The parts of the cycle sheet: the steps, which a tap removes, and the preview of the first days.
+     @part cycle-step  One step of the cycle, as its swatch. A tap removes it.
+     @part cycle-preview  The first days of the cycle, in one line that scrolls.
+     @part cycle-day  One day of the preview: the weekday, then the swatch.
+     @part cycle-day-name  The weekday of a day of the preview.
+     @example <div class="cluster"><button class="cycle-step" type="button" aria-label="Remove step 1"><span class="type-swatch" data-color="green">M</span></button><button class="cycle-step" type="button" aria-label="Remove step 2"><span class="type-swatch" data-color="none">–</span></button></div>
+     @example <div class="cycle-preview"><span class="cycle-day"><span class="cycle-day-name">M</span><span class="type-swatch small" data-color="green">M</span></span><span class="cycle-day"><span class="cycle-day-name">T</span><span class="type-swatch small" data-color="blue">N</span></span></div> */
+  .cycle-step {
+    min-height: var(--tap);
+    padding: 0;
+  }
+
+  .cycle-preview {
+    display: flex;
+    gap: var(--space-1);
+    margin: var(--space-3) 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .cycle-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .cycle-day-name {
+    color: var(--muted);
+    font-size: var(--text-xs);
+  }
+
+  /* @component agenda
+     @scope agenda
+     @summary The Agenda section: one row for each date from today. One centred column from 600px.
+     @example <section class="agenda" style="width: 100%"></section> */
+  .agenda {
+    width: 100%;
+    max-width: var(--content-max);
+    margin-inline: auto;
+  }
+
   /* @component version-status
      @scope settings
      @summary The state of the installed version: a sign, and a text for the outdated state only.

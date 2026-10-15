@@ -18,6 +18,10 @@ The parts that the screen is built from, and the rules that keep them the same o
   `none` and `transparent` are always allowed. `width` and `height` are raw only in
   `components` and `layouts`.
 
+- **DS-9** Each colour of `COLORS` of `src/shifts.js` is a token `--shift-<colour>` with a
+  light and a dark value, a soft fill on which `--text` stays legible. `type-swatch` takes it from
+  its `data-color` attribute.
+
 ## Names
 
 - **DS-3** A component is a block class. A variant is a modifier class, valid only with its
@@ -52,6 +56,6 @@ The parts of the catalogue, by layer. A request for a screen names them.
 | Layer | Parts |
 |---|---|
 | base | `main` |
-| components | `icon`, `button`, `fab`, `chip`, `pill`, `segmented`, `switch`, `input`, `field`, `select`, `app-header`, `ring`, `nav-bar`, `badge`, `sheet`, `toast`, `banner`, `empty-state`, `item-list`, `item-row`, `swipe-action`, `section-head`, `group-head`, `list-group` |
+| components | `icon`, `button`, `fab`, `chip`, `pill`, `segmented`, `switch`, `input`, `field`, `select`, `app-header`, `ring`, `nav-bar`, `badge`, `sheet`, `toast`, `banner`, `empty-state`, `item-list`, `item-row`, `swipe-action`, `section-head`, `group-head`, `list-group`, `type-swatch` |
 | layouts | `cluster`, `input-row`, `split`, `pane` |
-| screens | settings: `settings`, `about`, `version-status` · nav: `dust` · onboarding: `onboarding`, `onboarding-art` |
+| screens | plan: `plan`, `cycle-sheet` · agenda: `agenda` · settings: `settings`, `about`, `version-status` · nav: `dust` · onboarding: `onboarding`, `onboarding-art` |
