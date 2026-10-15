@@ -2,6 +2,4 @@
 
 ## Planned
 
-- **Test.** Testing
-
 ## Deferred
