@@ -48,7 +48,8 @@ Rules of `styles.css` for the size classes, `src/sections.js`, `src/modules.js`,
 
 - **ONB-1** The walkthrough shows at the start of a new install only: no `pwa-shifts.onboarded`
   flag and no stored doc. A storage that cannot be read counts as seen.
-- **ONB-2** It has the pages of `PAGES`, each with a drawing, a title and a text. **Next** goes
+- **ONB-2** It has the pages of `PAGES`: `plan` (the shift types and the cycle), `month` (read and
+  change a day) and `offline`, each with a drawing, a title and a text. **Next** goes
   forward, **Skip** and Escape close it, a slide or the arrow keys turn a page. The last page has
   **Start** in place of **Next**, and no **Skip**.
 - **ONB-3** A close stores the flag. **Show the introduction** in Settings opens it again.
