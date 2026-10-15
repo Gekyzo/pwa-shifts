@@ -6,5 +6,6 @@
 - **Multi-select.** Implementar selección de múltiples fechas para aplicar turno
 - **Crear plan.** Permitir creación de plan desde pantalla de mes
 - **Vista anual.**
+- **Custom color.** Permitir color-picker para planes
 
 ## Deferred
