@@ -101,8 +101,10 @@ Rules of `sw.js`, `src/version.js`, `version.json`, `scripts/bump-version.mjs`,
 ## Installation
 
 - **VER-14** The manifest makes the app installable from Chrome: **Install app**, or the
-  **Install** button of Settings (INS-2). It runs `standalone`, in any orientation, with `id`,
-  `start_url` and `scope` `./`.
+  **Install** button of Settings (INS-2). It runs `standalone`, in any orientation, with
+  `start_url` and `scope` `./` and `id` `/pwa-shifts/`. The `id` resolves against the origin of
+  `start_url`, so `./` would be the root of `gekyzo.github.io`, the same id as each other app
+  there, and Chrome would offer no install.
 - **VER-15** The icons are `icons/icon-192.png`, `icon-512.png` and `icon-maskable-512.png`,
   written by `npm run icons` from the art of `icons/source.png`: a placeholder note on white, which each app replaces.
   The tab shows `icon-192.png`. The art of the maskable icon stays in the safe zone, a circle

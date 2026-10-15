@@ -3,7 +3,7 @@
   "short_name": "Shifts",
   "description": "Installable web app template",
   "lang": "en",
-  "id": "./",
+  "id": "/pwa-shifts/",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
