@@ -1,4 +1,4 @@
-# Shifts
+# Rota
 
 An offline Android PWA to track your own work shifts. Plain HTML, CSS and ES modules: no build
 step and no dependencies.

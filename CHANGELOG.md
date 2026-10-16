@@ -4,7 +4,7 @@ User-visible changes, newest first.
 
 ## Unreleased
 
-No change.
+- The app is now called **Rota**.
 
 ## 0.2.1 - 2026-10-16
 
