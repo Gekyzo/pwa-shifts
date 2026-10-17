@@ -8,5 +8,6 @@
 - **Vista anual.**
 - **Custom color.** Permitir color-picker para planes
 - **Precisión fechas.** Añadir datepicker en agenda para saber con felicidad estado (con contexto +/- 7 días)
+- **Buy me a coffee.** Add support link
 
 ## Deferred
