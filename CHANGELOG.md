@@ -4,6 +4,10 @@ User-visible changes, newest first.
 
 ## Unreleased
 
+No change.
+
+## 0.2.3 - 2026-10-24
+
 - The icon of Settings is a gear, as in the other apps of the family.
 
 ## 0.2.2 - 2026-10-24
