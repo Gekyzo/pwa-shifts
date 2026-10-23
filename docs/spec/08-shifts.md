@@ -76,7 +76,8 @@ The Month section, `src/ui/month.js`.
   the next month (slide left) or the previous one (slide right), with the length of NAV-2.
 - **CAL-2** The grid has the names of the days, Monday first, then six weeks from the Monday on or
   before the first day. A date shows its number and the code of its shift on its colour; a date of
-  another month is faint; today has its number on the accent; an override has a border; a date
+  another month is faint; today has its number on ink (`--primary`); the selected date is an ink fill (`--ink`); an
+  override has a border; a date
   with a note has a dot.
 - **CAL-3** From 600px each week row ends with the planned hours of that week (TOT-3). Under the
   grid are the hours of the month and the count of the days of each type of the month. With no
@@ -95,7 +96,8 @@ The editor of one date, `src/ui/day.js`.
   override, applies `resetDay` with the toast `toast.dayReset`.
 - **DAY-2** The note field holds up to 200 characters. **Save the note** applies SHF-9 with the
   toast `toast.noteSaved`. A tap on a chip keeps a note that is typed and not saved.
-- **DAY-3** A tap on the veil or Escape closes the day sheet. A window that grows past 840px on
+- **DAY-3** The day sheet has a head with the date and **Close**. **Close**, a tap on the veil,
+  Escape or a drag down from the head closes it. A window that grows past 840px on
   Month moves the open date from the sheet into the pane.
 
 ## Agenda
@@ -114,7 +116,8 @@ The Agenda section, `src/ui/agenda.js`. It is the module `agenda` (MOD-1).
 The Plan section, `src/ui/plan.js`.
 
 - **PLN-1** Plan lists the shift types, each with its code on its colour, its name, and its hours
-  or its kind. With no type it shows `plan.noTypes`. **+** opens the sheet of a new type; a tap on
+  or its kind. With no type it shows `plan.noTypes` and **Add shift type**. **+** and **Add shift type** open
+  the sheet of a new type; a tap on
   a row opens the sheet of that type.
 - **PLN-2** The type sheet has the name, the code, the kind (`work`, `off` or `leave`), and for
   `work` the start, the end and the break in minutes, then a colour of `COLORS`. **Save** applies
@@ -126,4 +129,6 @@ The Plan section, `src/ui/plan.js`.
   that adds a step at the end, and a preview of the first 14 days. A tap on a step removes it.
   **Save** applies SHF-6; a changed first day removes the cycle of the old day in the same change.
   **Delete** applies SHF-7, and the toast `toast.cycleDeleted` offers **Undo**.
-- **PLN-5** A tap on the veil or Escape closes a sheet with no change.
+- **PLN-5** A sheet has a head with its title and **Close**, and a foot with **Delete** and
+  **Save**; a new type or cycle has no **Delete**. **Close**, a tap on the veil, Escape or a drag
+  down from the head closes a sheet with no change.

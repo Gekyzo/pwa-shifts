@@ -1,3 +1,4 @@
+import { bindSheetDrag } from '#ds/sheet';
 import { COLORS, KINDS, findType, addType, editType, deleteType, setCycle, removeCycle } from '#shifts';
 import { addDays, isDate } from '#dates';
 import { $, el, ui, state, t, today, apply, render, sheetOpen } from '#ui/context';
@@ -155,8 +156,12 @@ export const renderPlan = () => {
 
 export const bind = () => {
   $('fab').addEventListener('click', () => openTypeSheet('new'));
-  $('type-veil').addEventListener('click', closePlanSheets);
-  $('cycle-veil').addEventListener('click', closePlanSheets);
+  $('types-add').addEventListener('click', () => openTypeSheet('new'));
+  for (const name of ['type', 'cycle']) {
+    $(`${name}-veil`).addEventListener('click', closePlanSheets);
+    $(`${name}-close`).addEventListener('click', closePlanSheets);
+    bindSheetDrag($(`${name}-sheet`), { close: closePlanSheets });
+  }
   $('type-delete').addEventListener('click', removeType);
   $('cycle-delete').addEventListener('click', removeTheCycle);
   $('type-form').addEventListener('submit', (event) => {

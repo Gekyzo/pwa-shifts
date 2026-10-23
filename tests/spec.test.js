@@ -64,6 +64,12 @@ test('the specification has the storage keys and the names of the caches', () =>
   for (const name of [cache, manifest]) assert.ok(docs['02-offline-version.md'].includes(`\`${name}\``), name);
 });
 
+test('DSV-1 names each file of vendor/design-system/ (SOURCE.json)', () => {
+  const rule = docs['04-design-system.md'].split('**DSV-1**')[1].split('- **DSV-2**')[0];
+  const { files: vendored } = JSON.parse(read('vendor/design-system/SOURCE.json'));
+  for (const file of [...Object.keys(vendored), 'SOURCE.json']) assert.ok(rule.includes(`\`${file}\``), file);
+});
+
 test('the cache prefix of sw.js is the slug of src/config.js', () => {
   const [, cache] = read('sw.js').match(/const CACHE = '([^']+)'/);
   const [, manifest] = read('sw.js').match(/const MANIFEST = '([^']+)'/);

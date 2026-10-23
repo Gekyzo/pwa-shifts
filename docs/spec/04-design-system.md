@@ -10,8 +10,8 @@ This document holds the rules of the app only.
 
 ## The copy
 
-- **DSV-1** `vendor/design-system/` holds `design-system.css`, `catalog.js`, `rules.js` and
-  `SOURCE.json`: the version, the commit and the sha256 of each file, and no other file. Only
+- **DSV-1** `vendor/design-system/` holds `design-system.css`, `catalog.js`, `rules.js`, `sheet.js`,
+  the font `geist.woff2` and `SOURCE.json`: the version, the commit and the sha256 of each file, and no other file. Only
   `npm run ds` writes it, from `../pwa-design-system` with no uncommitted change of those files. A
   file that differs from its hash fails `tests/vendor.test.js`. The tests read the copy only, so
   they pass with no `../pwa-design-system`.
@@ -25,7 +25,9 @@ This document holds the rules of the app only.
   variants and states that the app adds. A version holds only the rules that differ from the
   shared ones, so that a change of the shared sheet reaches the app. No other rule of `components`
   or `layouts` repeats a selector of the shared sheet. The app has its own version of `chip`: a
-  chip holds the swatch of a shift type and its name on one line, with a gap between them.
+  chip holds the swatch of a shift type and its name on one line, with a gap between them. Its
+  version of `sheet` keeps a lone Save of a new type or cycle at the side of the hand, and its
+  `wrap` title lets the date of the day sheet take two lines.
 - **DSV-4** A change of a shared part is made in `pwa-design-system`, then `npm run ds` here.
   Nothing edits `vendor/` by hand, and `npm run init` copies it as it is (ENG-17).
 
@@ -41,5 +43,5 @@ The parts of `styles.css`, by layer. The shared parts are in the design system.
 
 | Layer | Parts |
 |---|---|
-| components | `type-swatch` · version of `chip` (DSV-3) |
+| components | `type-swatch` · versions of `chip` and `sheet` (DSV-3) |
 | screens | month: `month`, `day` · plan: `plan`, `cycle-sheet` · agenda: `agenda` · settings: `settings`, `about`, `version-status` · nav: `dust` · onboarding: `onboarding`, `onboarding-art` |

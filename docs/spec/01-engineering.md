@@ -23,9 +23,9 @@
 | `src/ui/install.js` | The Install button | `install`, `ui/context` |
 | `src/ui/nav.js` | The navigation, the change and the slide of a section | `sections`, `modules`, `ui/context`, `ui/update`, `ui/dust` |
 | `src/ui/month.js` | The Month section: the head, the grid, its slide and the totals | `shifts`, `dates`, `sections`, `totals`, `ui/context`, `ui/format`, `ui/day` |
-| `src/ui/day.js` | The editor of one date, in the day sheet or beside the grid | `shifts`, `totals`, `ui/context`, `ui/format` |
+| `src/ui/day.js` | The editor of one date, in the day sheet or beside the grid | `ds/sheet`, `shifts`, `totals`, `ui/context`, `ui/format` |
 | `src/ui/agenda.js` | The Agenda section: the dates from today, with the hours of each week | `shifts`, `dates`, `totals`, `ui/context`, `ui/format`, `ui/day` |
-| `src/ui/plan.js` | The Plan section: the shift types, the cycles and their sheets | `shifts`, `dates`, `ui/context`, `ui/format` |
+| `src/ui/plan.js` | The Plan section: the shift types, the cycles and their sheets | `ds/sheet`, `shifts`, `dates`, `ui/context`, `ui/format` |
 | `src/ui/settings.js` | Settings, and the text of the page in its language | `shifts`, `storage`, `i18n`, `modules`, `ui/context`, `ui/update`, `ui/onboarding` |
 | `src/ui/dust.js` | The dust of a navigation item (optional) | `particles`, `ui/context`, `ui/controls` |
 | `src/ui/onboarding.js` | The walkthrough (optional) | `onboarding`, `sections`, `storage`, `ui/context`, `ui/controls` |

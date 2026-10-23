@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
-    <meta name="theme-color" content="#1f7a4d" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#111613" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f4f3f1" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f0f0e" media="(prefers-color-scheme: dark)">
     <title>Rota</title>
     <link rel="manifest" href="./manifest.webmanifest">
     <link rel="icon" href="./icons/icon-192.png" type="image/png">
@@ -39,7 +39,7 @@
           <div id="month-totals" class="month-totals"></div>
         </div>
         <article id="day-detail" class="pane-detail">
-          <p id="day-detail-empty" class="empty-state" data-i18n="month.pick"></p>
+          <p id="day-detail-empty" class="empty-state inline" data-i18n="month.pick"></p>
           <form id="day-detail-form" class="day" autocomplete="off">
             <h2 id="day-detail-title" class="day-title"></h2>
             <div id="day-detail-body"></div>
@@ -56,7 +56,10 @@
       <section id="plan" class="plan" hidden>
         <h2 class="plan-title" data-i18n="plan.types"></h2>
         <div id="type-list" class="list-group"></div>
-        <p id="types-empty" class="empty-state" data-i18n="plan.noTypes"></p>
+        <div id="types-empty" class="empty-state">
+          <p data-i18n="plan.noTypes"></p>
+          <button id="types-add" class="button primary" type="button" data-i18n="plan.addType"></button>
+        </div>
         <h2 class="plan-title" data-i18n="plan.cycles"></h2>
         <div id="cycle-list" class="list-group"></div>
       </section>
@@ -123,8 +126,8 @@
       <div id="day-veil" class="sheet-veil"></div>
       <form id="day-form" class="sheet" role="dialog" aria-modal="true" aria-labelledby="day-sheet-title" autocomplete="off">
         <div class="sheet-grab"></div>
-        <h2 id="day-sheet-title" class="day-title"></h2>
-        <div id="day-sheet-body"></div>
+        <header class="sheet-head"><h2 id="day-sheet-title" class="sheet-title main wrap"></h2><button id="day-close" class="button icon" type="button" data-i18n-attr="aria-label:sheet.close"><svg class="icon" aria-hidden="true"><use href="icons.svg#close"/></svg></button></header>
+        <div id="day-sheet-body" class="sheet-body"></div>
       </form>
     </div>
 
@@ -132,22 +135,24 @@
       <div id="type-veil" class="sheet-veil"></div>
       <form id="type-form" class="sheet" role="dialog" aria-modal="true" aria-labelledby="type-sheet-title" autocomplete="off">
         <div class="sheet-grab"></div>
-        <h2 id="type-sheet-title" class="sheet-title"></h2>
-        <label class="field"><input id="type-name" class="input field-input" type="text" maxlength="30" required data-i18n-attr="placeholder:type.name"><span class="field-label" data-i18n="type.name"></span></label>
-        <label class="field"><input id="type-code" class="input field-input" type="text" maxlength="3" required data-i18n-attr="placeholder:type.code"><span class="field-label" data-i18n="type.code"></span></label>
-        <h2 class="sheet-title part" data-i18n="type.kind"></h2>
-        <div id="type-kind" class="segmented"></div>
-        <div id="type-times" class="split">
-          <label class="field"><input id="type-start" class="input field-input" type="time"><span class="field-label" data-i18n="type.start"></span></label>
-          <label class="field"><input id="type-end" class="input field-input" type="time"><span class="field-label" data-i18n="type.end"></span></label>
+        <header class="sheet-head"><h2 id="type-sheet-title" class="sheet-title main"></h2><button id="type-close" class="button icon" type="button" data-i18n-attr="aria-label:sheet.close"><svg class="icon" aria-hidden="true"><use href="icons.svg#close"/></svg></button></header>
+        <div class="sheet-body">
+          <label class="field"><input id="type-name" class="input field-input" type="text" maxlength="30" required data-i18n-attr="placeholder:type.name"><span class="field-label" data-i18n="type.name"></span></label>
+          <label class="field"><input id="type-code" class="input field-input" type="text" maxlength="3" required data-i18n-attr="placeholder:type.code"><span class="field-label" data-i18n="type.code"></span></label>
+          <h2 class="sheet-title part" data-i18n="type.kind"></h2>
+          <div id="type-kind" class="segmented"></div>
+          <div id="type-times" class="split">
+            <label class="field"><input id="type-start" class="input field-input" type="time"><span class="field-label" data-i18n="type.start"></span></label>
+            <label class="field"><input id="type-end" class="input field-input" type="time"><span class="field-label" data-i18n="type.end"></span></label>
+          </div>
+          <label id="type-break-field" class="field"><input id="type-break" class="input field-input" type="number" min="0" step="1" inputmode="numeric" data-i18n-attr="placeholder:type.break"><span class="field-label" data-i18n="type.break"></span></label>
+          <h2 class="sheet-title part" data-i18n="type.color"></h2>
+          <div id="type-colors" class="cluster"></div>
         </div>
-        <label id="type-break-field" class="field"><input id="type-break" class="input field-input" type="number" min="0" step="1" inputmode="numeric" data-i18n-attr="placeholder:type.break"><span class="field-label" data-i18n="type.break"></span></label>
-        <h2 class="sheet-title part" data-i18n="type.color"></h2>
-        <div id="type-colors" class="cluster"></div>
-        <div class="split">
+        <footer class="sheet-foot">
           <button id="type-delete" class="button outline danger" type="button"><svg class="icon" aria-hidden="true"><use href="icons.svg#trash"/></svg><span data-i18n="type.delete"></span></button>
-          <button class="button primary hand-side" type="submit" data-i18n="type.save"></button>
-        </div>
+          <button class="button primary" type="submit" data-i18n="type.save"></button>
+        </footer>
       </form>
     </div>
 
@@ -155,19 +160,21 @@
       <div id="cycle-veil" class="sheet-veil"></div>
       <form id="cycle-form" class="sheet" role="dialog" aria-modal="true" aria-labelledby="cycle-sheet-title" autocomplete="off">
         <div class="sheet-grab"></div>
-        <h2 id="cycle-sheet-title" class="sheet-title"></h2>
-        <label class="field"><input id="cycle-from" class="input field-input" type="date" required><span class="field-label" data-i18n="cycle.start"></span></label>
-        <h2 class="sheet-title part" data-i18n="cycle.steps"></h2>
-        <div id="cycle-steps" class="cluster"></div>
-        <p id="cycle-steps-empty" class="empty-state inline" data-i18n="cycle.noSteps"></p>
-        <h2 class="sheet-title part" data-i18n="cycle.add"></h2>
-        <div id="cycle-palette" class="cluster"></div>
-        <h2 class="sheet-title part" data-i18n="cycle.preview"></h2>
-        <div id="cycle-preview" class="cycle-preview"></div>
-        <div class="split">
-          <button id="cycle-delete" class="button outline danger" type="button"><svg class="icon" aria-hidden="true"><use href="icons.svg#trash"/></svg><span data-i18n="cycle.delete"></span></button>
-          <button class="button primary hand-side" type="submit" data-i18n="cycle.save"></button>
+        <header class="sheet-head"><h2 id="cycle-sheet-title" class="sheet-title main"></h2><button id="cycle-close" class="button icon" type="button" data-i18n-attr="aria-label:sheet.close"><svg class="icon" aria-hidden="true"><use href="icons.svg#close"/></svg></button></header>
+        <div class="sheet-body">
+          <label class="field"><input id="cycle-from" class="input field-input" type="date" required><span class="field-label" data-i18n="cycle.start"></span></label>
+          <h2 class="sheet-title part" data-i18n="cycle.steps"></h2>
+          <div id="cycle-steps" class="cluster"></div>
+          <p id="cycle-steps-empty" class="empty-state inline" data-i18n="cycle.noSteps"></p>
+          <h2 class="sheet-title part" data-i18n="cycle.add"></h2>
+          <div id="cycle-palette" class="cluster"></div>
+          <h2 class="sheet-title part" data-i18n="cycle.preview"></h2>
+          <div id="cycle-preview" class="cycle-preview"></div>
         </div>
+        <footer class="sheet-foot">
+          <button id="cycle-delete" class="button outline danger" type="button"><svg class="icon" aria-hidden="true"><use href="icons.svg#trash"/></svg><span data-i18n="cycle.delete"></span></button>
+          <button class="button primary" type="submit" data-i18n="cycle.save"></button>
+        </footer>
       </form>
     </div>
 
@@ -242,7 +249,8 @@
           "#onboarding": "./src/onboarding.js",
           "#ui/dust": "./src/ui/dust.js",
           "#ui/onboarding": "./src/ui/onboarding.js",
-          "#ui/update": "./src/ui/update.js"
+          "#ui/update": "./src/ui/update.js",
+          "#ds/sheet": "./vendor/design-system/sheet.js"
         }
       }
     </script>

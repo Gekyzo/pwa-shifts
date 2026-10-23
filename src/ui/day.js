@@ -1,3 +1,4 @@
+import { bindSheetDrag } from '#ds/sheet';
 import { MAX_NOTE, dayOf, setDay, resetDay, setNote } from '#shifts';
 import { minutesOf } from '#totals';
 import { $, el, ui, state, t, apply, render } from '#ui/context';
@@ -90,6 +91,8 @@ const saveNote = (body) => (event) => {
 
 export const bind = () => {
   $('day-veil').addEventListener('click', closeDaySheet);
+  $('day-close').addEventListener('click', closeDaySheet);
+  bindSheetDrag($('day-sheet'), { close: closeDaySheet });
   $('day-form').addEventListener('submit', saveNote($('day-sheet-body')));
   $('day-detail-form').addEventListener('submit', saveNote($('day-detail-body')));
   wideQuery.addEventListener('change', () => {

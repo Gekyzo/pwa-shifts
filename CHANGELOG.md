@@ -5,6 +5,9 @@ User-visible changes, newest first.
 ## Unreleased
 
 - The app is now called **Rota**.
+- The look of design system 0.7.1: the Geist font, the stone ground, smaller corners and heads in the colour of the text.
+- Each sheet has a head with its title and a close button, and its actions stay at the bottom. A drag down from the head closes it.
+- With no shift type, Plan offers **Add shift type**.
 
 ## 0.2.1 - 2026-10-16
 

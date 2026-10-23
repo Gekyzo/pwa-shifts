@@ -44,6 +44,24 @@ test('each sheet has a veil and a dialog form', () => {
   }
 });
 
+test('each sheet has a head with its title and Close, and a body (DAY-3, PLN-5)', () => {
+  for (const name of ['day', 'type', 'cycle']) {
+    const layer = sheetOf(name);
+    assert.match(layer, new RegExp(`<header class="sheet-head"><h2 id="${name}-sheet-title" class="sheet-title main( wrap)?"></h2><button id="${name}-close" class="button icon" type="button"`), name);
+    assert.match(layer, /<div (id="[\w-]+" )?class="sheet-body">/, name);
+  }
+});
+
+test('the type and the cycle sheet end with a foot of Delete and Save (PLN-5)', () => {
+  for (const name of ['type', 'cycle']) {
+    assert.match(sheetOf(name), new RegExp(`<footer class="sheet-foot">\\s*<button id="${name}-delete" class="button outline danger"[\\s\\S]*<button class="button primary" type="submit"`), name);
+  }
+});
+
+test('the empty list of shift types offers Add shift type (PLN-1)', () => {
+  assert.match(body, /<div id="types-empty" class="empty-state">\s*<p data-i18n="plan.noTypes"><\/p>\s*<button id="types-add" class="button primary" type="button" data-i18n="plan.addType">/);
+});
+
 test('the type sheet limits the name and the code to the lengths of the doc (SHF-3)', () => {
   const layer = sheetOf('type');
   assert.match(layer, /<input id="type-name"[^>]*maxlength="30"/);
