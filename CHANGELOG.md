@@ -4,6 +4,10 @@ User-visible changes, newest first.
 
 ## Unreleased
 
+No change.
+
+## 0.2.2 - 2026-10-24
+
 - The app is now called **Rota**.
 - The look of design system 0.7.1: the Geist font, the stone ground, smaller corners and heads in the colour of the text.
 - Each sheet has a head with its title and a close button, and its actions stay at the bottom. A drag down from the head closes it.
