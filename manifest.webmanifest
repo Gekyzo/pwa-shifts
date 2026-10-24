@@ -1,7 +1,7 @@
 {
-  "name": "Rota",
+  "name": "Work shifts - Rota",
   "short_name": "Rota",
-  "description": "Installable web app template",
+  "description": "Your work shifts, offline",
   "lang": "en",
   "id": "/pwa-shifts/",
   "start_url": "./",

@@ -1,5 +1,5 @@
 export default {
-  'app.title': 'Rota',
+  'app.title': 'Work shifts - Rota',
   'app.description': 'Your work shifts, offline',
   'nav.label': 'Sections',
   'nav.month': 'Month',
