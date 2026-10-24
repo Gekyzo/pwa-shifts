@@ -1,4 +1,4 @@
-const CACHE = 'pwa-shifts-shell-v2';
+const CACHE = 'pwa-shifts-shell-v3';
 
 const SHELL = [
   './',
