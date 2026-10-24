@@ -9,6 +9,7 @@
 | `src/shifts.js` | The shifts doc: types, cycles, days, the shift of a date, and its validation | `config`, `dates` |
 | `src/totals.js` | The planned minutes of a type, and the totals of a range, a week and a month | `shifts`, `dates` |
 | `src/version.js` | Version rules and the update offer rule | nothing |
+| `src/whatsnew.js` | The parse of the release notes and the versions that a user has not seen | `version` |
 | `src/i18n.js` | The language choice and the translator | `locales/*` |
 | `src/sections.js` | The order of the sections and the rule of the slide between them | nothing |
 | `src/modules.js` | The modules that Settings turns off, and the visible sections | `sections` |
@@ -93,6 +94,7 @@ The doc keys are in [08-shifts.md](08-shifts.md). The device preferences are `pw
 | `tests/particles.test.js` | The particles of a picture and their place in time |
 | `tests/onboarding.test.js` | The show rule and the page steps of the walkthrough |
 | `tests/version.test.js` | Version rules and the update offer rule |
+| `tests/whatsnew.test.js` | The parse of the release notes and the unseen versions |
 | `tests/i18n.test.js` | The language choice, the translator, the parity of the catalogs |
 | `tests/markup.test.js` | `index.html` holds no text of its own; the sheet and the walkthrough markup |
 | `tests/aliases.test.js` | The import map against `package.json` |
