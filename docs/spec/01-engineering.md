@@ -95,6 +95,7 @@ The doc keys are in [08-shifts.md](08-shifts.md). The device preferences are `pw
 | `tests/onboarding.test.js` | The show rule and the page steps of the walkthrough |
 | `tests/version.test.js` | Version rules and the update offer rule |
 | `tests/whatsnew.test.js` | The parse of the release notes and the unseen versions |
+| `tests/release-notes-files.test.js` | One release-notes file for each language, with the same versions (VER-19) |
 | `tests/i18n.test.js` | The language choice, the translator, the parity of the catalogs |
 | `tests/markup.test.js` | `index.html` holds no text of its own; the sheet and the walkthrough markup |
 | `tests/aliases.test.js` | The import map against `package.json` |
@@ -102,7 +103,7 @@ The doc keys are in [08-shifts.md](08-shifts.md). The device preferences are `pw
 | `tests/design.test.js` | Each rule of `vendor/design-system/rules.js` over the two stylesheets, `index.html`, `icons.svg`, `src/ui/` and `designs/`; the component of the app and the colours of the shift types (DSV-3, DSV-5) |
 | `tests/vendor.test.js` | The copy of the design system: its files and hashes, its place in `index.html`, `designs/index.html` and `SHELL`, no copied rule in `styles.css` (DSV-1 to DSV-3) |
 | `tests/png.test.js` | The PNG encoder and decoder of `scripts/png.mjs`, which `npm run icons` uses |
-| `tests/release.test.js` | The release of `scripts/release.mjs`: the bump commit, the tag and the refusals, also a `main` behind `origin` (VER-10 to VER-12) |
+| `tests/release.test.js` | The release of `scripts/release.mjs`: the bump commit, the tag and the refusals, also a `main` behind `origin` and release notes that disagree (VER-10 to VER-12, VER-20) |
 | `tests/changelog.test.js` | The release of `CHANGELOG.md` by `scripts/changelog.mjs` (VER-17) |
 | `tests/init.test.js` | The arguments of `scripts/init.mjs`, and a run of it in a copy: the new names, no trace of the template, `vendor/` kept as it is, its refusal of a second run (ENG-17) |
 | `tests/spec.test.js` | The facts of this specification that the code can prove (ENG-12) |
