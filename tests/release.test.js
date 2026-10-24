@@ -8,7 +8,7 @@ import { join } from 'node:path';
 // scripts/release.mjs runs git, so each test runs it in a new repository with the files that a
 // release reads and writes.
 const root = new URL('../', import.meta.url).pathname;
-const FILES = ['package.json', 'src/version.js', 'scripts/bump-version.mjs', 'scripts/changelog.mjs', 'scripts/release.mjs'];
+const FILES = ['package.json', 'src/version.js', 'src/whatsnew.js', 'scripts/bump-version.mjs', 'scripts/changelog.mjs', 'scripts/release.mjs'];
 const ENV = {
   ...process.env,
   GIT_AUTHOR_NAME: 'Test',
@@ -180,4 +180,17 @@ test('release refuses an origin that it cannot fetch and writes nothing', (t) =>
   assert.match(run.stderr, /fetch origin/);
   assert.equal(git('log', '-1', '--format=%s'), 'Start');
   assert.equal(git('tag'), '');
+});
+
+test('release refuses release notes whose languages do not have the same versions and writes nothing', (t) => {
+  const { dir, git, release } = repo(t);
+  writeFileSync(join(dir, 'release-notes', 'es.md'), '# Notas\n\n## Unreleased\n\n- Un menú.\n');
+  git('commit', '--quiet', '-am', 'Spanish notes miss 1.0.9');
+  const run = release();
+  assert.notEqual(run.status, 0);
+  assert.match(run.stderr, /release notes/);
+  assert.match(run.stderr, /es/);
+  assert.equal(git('log', '-1', '--format=%s'), 'Spanish notes miss 1.0.9');
+  assert.equal(git('tag'), '');
+  assert.equal(git('status', '--porcelain'), '');
 });

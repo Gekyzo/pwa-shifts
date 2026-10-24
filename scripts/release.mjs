@@ -6,6 +6,7 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { parseVersion, nextVersion, LEVELS } from '#version';
+import { parseNotes } from '#whatsnew';
 import { hasUnreleased } from './changelog.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
@@ -13,8 +14,9 @@ const NOTES = 'release-notes';
 const notes = (() => {
   try {
     return readdirSync(new URL(`../${NOTES}/`, import.meta.url)).filter((file) => file.endsWith('.md')).sort();
-  } catch {
-    return [];
+  } catch (error) {
+    if (error.code === 'ENOENT') return [];
+    throw error;
   }
 })();
 const FILES = ['version.json', 'package.json', 'CHANGELOG.md', ...notes.map((file) => `${NOTES}/${file}`)];
@@ -45,10 +47,20 @@ if (git('remote').split('\n').includes('origin')) {
 
 // The release notes ship in every language or in none: a release stops when some languages have
 // notes under Unreleased and others do not.
-const withNotes = notes.filter((file) => hasUnreleased(readFileSync(new URL(`../${NOTES}/${file}`, import.meta.url), 'utf8')));
-if (withNotes.length && withNotes.length < notes.length) {
-  const without = notes.filter((file) => !withNotes.includes(file)).map((file) => file.slice(0, -'.md'.length));
+// The same released versions in each language, too: a language with fewer would show less.
+const noteText = Object.fromEntries(
+  notes.map((file) => [file.slice(0, -'.md'.length), readFileSync(new URL(`../${NOTES}/${file}`, import.meta.url), 'utf8')]),
+);
+const langs = Object.keys(noteText);
+const withNotes = langs.filter((lang) => hasUnreleased(noteText[lang]));
+if (withNotes.length && withNotes.length < langs.length) {
+  const without = langs.filter((lang) => !withNotes.includes(lang));
   stop(`the release notes have changes under Unreleased in some languages only. Write them in: ${without.join(', ')}.`);
+}
+const versionsOf = (lang) => parseNotes(noteText[lang]).map(({ version }) => version).join(',');
+const differ = langs.filter((lang) => versionsOf(lang) !== versionsOf(langs[0]));
+if (differ.length) {
+  stop(`the release notes of ${[langs[0], ...differ].join(', ')} do not have the same versions. Make them match first.`);
 }
 
 const current = parseVersion(JSON.parse(readFileSync(new URL('../version.json', import.meta.url), 'utf8')));

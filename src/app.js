@@ -8,6 +8,7 @@ import { bind as bindSettings, applyLanguage } from '#ui/settings';
 import { bind as bindInstall, renderInstall } from '#ui/install';
 import { readVersion, renderVersion, offerUpdate } from '#ui/update';
 import { bind as bindOnboarding, closeOnboarding, turnOnboarding } from '#ui/onboarding';
+import { bind as bindWhatsNew, startWhatsNew, isWhatsNewOpen, closeWhatsNew } from '#ui/whatsnew';
 
 const renderAll = () => {
   renderNav();
@@ -30,6 +31,7 @@ bindPlan();
 bindSettings();
 bindInstall();
 bindOnboarding();
+bindWhatsNew();
 
 document.addEventListener(
   'click',
@@ -49,7 +51,8 @@ document.addEventListener('keydown', (event) => {
     return;
   }
   if (event.key !== 'Escape') return;
-  if (ui.daySheet) closeDaySheet();
+  if (isWhatsNewOpen()) closeWhatsNew();
+  else if (ui.daySheet) closeDaySheet();
   else if (ui.typeSheet !== null || ui.cycleSheet !== null) closePlanSheets();
 });
 
@@ -68,5 +71,6 @@ navigator.serviceWorker?.register('./sw.js').catch(() => {});
 readVersion('./version.json').then((running) => {
   ui.version.running = running;
   renderVersion();
+  startWhatsNew(running);
   navigator.serviceWorker?.ready.then(offerUpdate).catch(() => {});
 });
