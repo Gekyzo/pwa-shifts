@@ -27,7 +27,8 @@ This document holds the rules of the app only.
   or `layouts` repeats a selector of the shared sheet. The app has its own version of `chip`: a
   chip holds the swatch of a shift type and its name on one line, with a gap between them. Its
   version of `sheet` keeps a lone Save of a new type or cycle at the side of the hand, and its
-  `wrap` title lets the date of the day sheet take two lines.
+  `wrap` title lets the date of the day sheet take two lines. Its version of `list-group` in
+  `settings` lays the select of a row of Preferences over the row (SET-1).
 - **DSV-4** A change of a shared part is made in `pwa-design-system`, then `npm run ds` here.
   Nothing edits `vendor/` by hand, and `npm run init` copies it as it is (ENG-17).
 
@@ -44,4 +45,4 @@ The parts of `styles.css`, by layer. The shared parts are in the design system.
 | Layer | Parts |
 |---|---|
 | components | `type-swatch` · versions of `chip` and `sheet` (DSV-3) |
-| screens | month: `month`, `day` · plan: `plan`, `cycle-sheet` · agenda: `agenda` · settings: `settings`, `about`, `version-status` · nav: `dust` · onboarding: `onboarding`, `onboarding-art` |
+| screens | month: `month`, `day` · plan: `plan`, `cycle-sheet` · agenda: `agenda` · settings: `settings` (version of `list-group`), `about`, `version-status` · nav: `dust` · onboarding: `onboarding`, `onboarding-art` |

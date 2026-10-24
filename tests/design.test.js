@@ -35,6 +35,10 @@ test('the component of the app is documented in styles.css (DSV-3)', () => {
   assert.ok(names.includes('type-swatch'));
 });
 
+test('styles.css has its versions of chip, sheet and list-group (DSV-3)', () => {
+  assert.deepEqual([...read('styles.css').matchAll(/\/\*\s*@extends\s+([\w-]+)/g)].map(([, name]) => name), ['chip', 'sheet', 'list-group']);
+});
+
 test('each colour of a shift type has a light and a dark token and a swatch rule (DSV-5)', () => {
   const rules = rulesOf(read('styles.css'));
   const tokens = new Map(rules.filter((rule) => rule.layer === 'tokens').flatMap((rule) => rule.declarations).map((d) => [d.property, d.value]));

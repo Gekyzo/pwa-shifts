@@ -33,7 +33,7 @@ The rules DS-1 to DS-8 and LAY-1 to LAY-4 belong to the design system, `pwa-desi
 | `SW`, `VER` | 02-offline-version |
 | `INS` | 03-install |
 | `DSV` | 04-design-system |
-| `NAV`, `MOD`, `ONB` | 05-layout |
+| `NAV`, `MOD`, `SET`, `ONB` | 05-layout |
 | `I18N` | 06-i18n |
 | `SHF`, `TOT`, `CAL`, `DAY`, `AGD`, `PLN` | 08-shifts |
 
