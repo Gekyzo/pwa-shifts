@@ -4,6 +4,10 @@ User-visible changes, newest first.
 
 ## Unreleased
 
+No change.
+
+## 0.2.4 - 2026-10-24
+
 - Settings groups its rows as in the other apps: each preference shows its value, Export and Import are rows.
 
 ## 0.2.3 - 2026-10-24
