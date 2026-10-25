@@ -98,7 +98,7 @@ export default {
   'settings.install': 'Install the app',
   'settings.account': 'Account',
   'account.login.title': 'Sign in',
-  'account.login.text': 'The administrator approves each new account. Offline, your notes stay on this device.',
+  'account.login.text': 'The administrator approves each new account. Offline, your shifts stay on this device.',
   'account.google': 'Continue with Google',
   'account.offline': 'Use offline',
   'account.signIn': 'Sign in with Google',
