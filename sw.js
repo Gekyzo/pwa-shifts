@@ -1,4 +1,4 @@
-const CACHE = 'pwa-shifts-shell-v4';
+const CACHE = 'pwa-shifts-shell-v5';
 
 const SHELL = [
   './',
@@ -11,6 +11,8 @@ const SHELL = [
   './manifest.webmanifest',
   './src/app.js',
   './src/config.js',
+  './src/pocketbase.js',
+  './src/session.js',
   './src/dates.js',
   './src/shifts.js',
   './src/totals.js',
@@ -28,6 +30,7 @@ const SHELL = [
   './src/ui/dust.js',
   './src/ui/onboarding.js',
   './src/ui/whatsnew.js',
+  './src/ui/account.js',
   './src/particles.js',
   './src/onboarding.js',
   './src/install.js',

@@ -4,7 +4,9 @@
 
 | Module | Responsibility | May import |
 |---|---|---|
-| `src/config.js` | The slug of the app, which `npm run init` rewrites | nothing |
+| `src/config.js` | The slug of the app, which `npm run init` rewrites, and the URL of the account server | nothing |
+| `src/pocketbase.js` | The client of the account server: Google sign-in, refresh, the access row (ACC-3) | `config` |
+| `src/session.js` | The session on the device, the start route and the return from Google (ACC-1, ACC-4, ACC-5) | `storage` |
 | `src/dates.js` | Arithmetic of calendar dates and times of day | nothing |
 | `src/shifts.js` | The shifts doc: types, cycles, days, the shift of a date, and its validation | `config`, `dates` |
 | `src/totals.js` | The planned minutes of a type, and the totals of a range, a week and a month | `shifts`, `dates` |
@@ -31,6 +33,7 @@
 | `src/ui/dust.js` | The dust of a navigation item (optional) | `particles`, `ui/context`, `ui/controls` |
 | `src/ui/onboarding.js` | The walkthrough (optional) | `onboarding`, `sections`, `storage`, `ui/context`, `ui/controls` |
 | `src/ui/whatsnew.js` | The release notes sheet, its Settings row and the seen version | `whatsnew`, `onboarding`, `i18n`, `storage`, `ds/sheet`, `ui/context` |
+| `src/ui/account.js` | The account screens and the group Account of Settings (ACC-1 to ACC-10) | `pocketbase`, `session`, `config`, `ui/context` |
 | `src/app.js` | Wires the views, the global keys, the service worker and the update check | all of the above |
 
 ## Code rules
@@ -63,7 +66,8 @@
 ## Storage keys
 
 The doc keys are in [08-shifts.md](08-shifts.md). The device preferences are `pwa-shifts.lang`,
-`pwa-shifts.hand`, `pwa-shifts.theme`, `pwa-shifts.modules`, `pwa-shifts.onboarded` and `pwa-shifts.seen-version`.
+`pwa-shifts.hand`, `pwa-shifts.theme`, `pwa-shifts.modules`, `pwa-shifts.onboarded` and `pwa-shifts.seen-version`. The account keeps `pwa-shifts.session` (ACC-5) and
+`pwa-shifts.offline` (ACC-10), and `pwa-shifts.oauth` in `sessionStorage` for the time of a Google redirect (ACC-4).
 
 ## Change guide
 
@@ -87,6 +91,8 @@ The doc keys are in [08-shifts.md](08-shifts.md). The device preferences are `pw
 | `tests/dates.test.js` | The arithmetic of calendar dates, the month grid, the ISO week and the length of a shift |
 | `tests/shifts.test.js` | The operations of the shifts doc, the shift of a date and the validation of the doc |
 | `tests/totals.test.js` | The minutes of a type and the totals of a range, a week and a month |
+| `tests/pocketbase.test.js` | The client of the account server and its URL (ACC-3, ACC-4, ACC-6) |
+| `tests/session.test.js` | The session, the start route, the offline flag, the pending sign-in and the return URL (ACC-1, ACC-4, ACC-5, ACC-10) |
 | `tests/storage.test.js` | Load, save, the corrupt copy, export, import and the device preferences |
 | `tests/install.test.js` | The install offer states (INS-1) |
 | `tests/sw.test.js` | The manifest text that the worker puts in place (SW-13), and the release notes in `SHELL` (VER-21) |
@@ -98,7 +104,7 @@ The doc keys are in [08-shifts.md](08-shifts.md). The device preferences are `pw
 | `tests/whatsnew.test.js` | The parse of the release notes, the unseen versions and the seen version to store (`nextSeen`) |
 | `tests/release-notes-files.test.js` | One release-notes file for each language, with the same versions (VER-19) |
 | `tests/i18n.test.js` | The language choice, the translator, the parity of the catalogs |
-| `tests/markup.test.js` | `index.html` holds no text of its own; the sheet, the walkthrough and the What's new markup |
+| `tests/markup.test.js` | `index.html` holds no text of its own; the sheet, the walkthrough, the What's new and the account markup |
 | `tests/aliases.test.js` | The import map against `package.json` |
 | `tests/layers.test.js` | The layer rules and `SHELL` (ENG-16) |
 | `tests/design.test.js` | Each rule of `vendor/design-system/rules.js` over the two stylesheets, `index.html`, `icons.svg`, `src/ui/` and `designs/`; the component of the app and the colours of the shift types (DSV-3, DSV-5) |

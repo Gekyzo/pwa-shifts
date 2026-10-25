@@ -17,6 +17,7 @@ The names of the screen are the English ones; `src/locales/es.js` is the source 
 | [05-layout.md](05-layout.md) | Navigation, sections, modules and the walkthrough |
 | [06-i18n.md](06-i18n.md) | The languages and the rules of the text |
 | [08-shifts.md](08-shifts.md) | The shifts: types, cycles, days, totals and their screens |
+| [09-account.md](09-account.md) | Google sign-in, the approval gate and the offline choice |
 
 ## Rule identifiers
 
@@ -36,6 +37,7 @@ The rules DS-1 to DS-8 and LAY-1 to LAY-4 belong to the design system, `pwa-desi
 | `NAV`, `MOD`, `SET`, `ONB` | 05-layout |
 | `I18N` | 06-i18n |
 | `SHF`, `TOT`, `CAL`, `DAY`, `AGD`, `PLN` | 08-shifts |
+| `ACC` | 09-account |
 
 ## Words
 
