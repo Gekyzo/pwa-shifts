@@ -4,7 +4,7 @@ What changes for you in each version of the app. The newest version is first.
 
 ## Unreleased
 
-No change.
+- A new app icon: a calendar with a day half and a night half.
 
 ## 0.2.8 - 2026-10-25
 

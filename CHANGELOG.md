@@ -4,7 +4,7 @@ Technical changes, newest first. What a user sees of a version goes to `release-
 
 ## Unreleased
 
-No change.
+- New art in `icons/source.png`: a calendar split into a day half (sun) and a night half (moon). The PNG icons and `icons/logo.png` are written again by `npm run icons`.
 
 ## 0.2.8 - 2026-10-25
 
