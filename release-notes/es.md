@@ -4,6 +4,10 @@ Lo que cambia para ti en cada versión de la app. La versión más nueva va prim
 
 ## Unreleased
 
+No change.
+
+## 0.2.9 - 2026-10-27
+
 - Un icono nuevo para la app: un calendario con una mitad de día y una mitad de noche.
 
 ## 0.2.8 - 2026-10-25
