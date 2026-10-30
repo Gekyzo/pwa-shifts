@@ -85,3 +85,34 @@ test('textParts reads a # that is not at the start of a key, or a lone #, as tex
     { text: '#', key: true },
   ]);
 });
+
+test('textParts marks the text between two ** as bold', () => {
+  assert.deepEqual(textParts('**Borrar todos los datos** en Ajustes.'), [
+    { text: 'Borrar todos los datos', key: false, strong: true },
+    { text: ' en Ajustes.', key: false },
+  ]);
+});
+
+test('textParts reads a key beside bold text and a key inside it', () => {
+  assert.deepEqual(textParts('**Toca** `↻`. **En `#menu Menú` ya**'), [
+    { text: 'Toca', key: false, strong: true },
+    { text: ' ', key: false },
+    { text: '↻', key: true },
+    { text: '. ', key: false },
+    { text: 'En ', key: false, strong: true },
+    { text: 'Menú', key: true, icon: 'menu', strong: true },
+    { text: ' ya', key: false, strong: true },
+  ]);
+});
+
+test('textParts keeps a ** with no pair, and a ** in a key, as text', () => {
+  assert.deepEqual(textParts('Abre ** menú'), [{ text: 'Abre ** menú', key: false }]);
+  assert.deepEqual(textParts('**Uno** y **dos'), [
+    { text: 'Uno', key: false, strong: true },
+    { text: ' y **dos', key: false },
+  ]);
+  assert.deepEqual(textParts('`**` y'), [
+    { text: '**', key: true },
+    { text: ' y', key: false },
+  ]);
+});

@@ -4,6 +4,7 @@ Lo que cambia para ti en cada versión de la app. La versión más nueva va prim
 
 ## Unreleased
 
+- Las palabras en negrita de estas notas ya se ven en negrita, sin asteriscos.
 - **Borrar todos los datos** en Ajustes borra los turnos y las preferencias de este dispositivo, y la app empieza como nueva.
 
 ## 0.2.9 - 2026-10-27
