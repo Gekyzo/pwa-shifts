@@ -4,6 +4,10 @@ Technical changes, newest first. What a user sees of a version goes to `release-
 
 ## Unreleased
 
+No change.
+
+## 0.2.10 - 2026-10-31
+
 - The What's new notes show `**bold**` text in `<strong>` (VER-22): `textParts` of `src/onboarding.js` gives a part between two `**` with `strong: true`, a key in it too; a `**` with no pair stays as text.
 - **Delete all data** in Settings › Backup, as in pwa-template (SET-2): `resetAll` in `src/storage.js` removes each `localStorage` key of the app, `<slug>.*`, and no key of another app of the origin; the page loads again as a new install. With a session the question says that it also logs out (`signedIn` of `src/ui/account.js`). Keys `settings.reset`, `reset.confirm`, `reset.confirmLocal`, `error.resetFailed`.
 

@@ -4,6 +4,10 @@ What changes for you in each version of the app. The newest version is first.
 
 ## Unreleased
 
+No change.
+
+## 0.2.10 - 2026-10-31
+
 - The words in bold in these notes now show in bold, with no asterisks.
 - **Delete all data** in Settings removes the shifts and the preferences from this device, and the app starts as new.
 
