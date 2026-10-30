@@ -29,7 +29,7 @@
 | `src/ui/day.js` | The editor of one date, in the day sheet or beside the grid | `ds/sheet`, `shifts`, `totals`, `ui/context`, `ui/format` |
 | `src/ui/agenda.js` | The Agenda section: the dates from today, with the hours of each week | `shifts`, `dates`, `totals`, `ui/context`, `ui/format`, `ui/day` |
 | `src/ui/plan.js` | The Plan section: the shift types, the cycles and their sheets | `ds/sheet`, `shifts`, `dates`, `ui/context`, `ui/format` |
-| `src/ui/settings.js` | Settings, and the text of the page in its language | `shifts`, `storage`, `i18n`, `modules`, `ui/context`, `ui/update`, `ui/onboarding` |
+| `src/ui/settings.js` | Settings, Delete all data (SET-2), and the text of the page in its language | `shifts`, `storage`, `i18n`, `modules`, `ui/context`, `ui/update`, `ui/onboarding`, `ui/account` |
 | `src/ui/dust.js` | The dust of a navigation item (optional) | `particles`, `ui/context`, `ui/controls` |
 | `src/ui/onboarding.js` | The walkthrough (optional) | `onboarding`, `sections`, `storage`, `ui/context`, `ui/controls` |
 | `src/ui/whatsnew.js` | The release notes sheet, its Settings row and the seen version | `whatsnew`, `onboarding`, `i18n`, `storage`, `ds/sheet`, `ui/context` |
